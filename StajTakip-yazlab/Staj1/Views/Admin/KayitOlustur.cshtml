@@ -1,0 +1,246 @@
+﻿@model Staj1.Models.Kullanici
+
+@{ ViewBag.Title = "KayitOlustur";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml"; }
+
+
+
+
+<head>
+
+    <link href="~/Content/CSS/UyeOl.css" rel="stylesheet" />
+
+    <script type="text/javascript" src="~/Content/jquery-3.1.1.min.js"></script>
+
+    <script type="text/javascript" src="~/Content/jquery.mask.min.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $('#telefon_numarasi').mask("0(999) 999 99 99");
+            $('#okul_numarasi').mask("99999999999");
+        });
+    </script>
+
+    <style>
+        * {
+            border: 0;
+            outline: 0;
+        }
+
+        label#largeFile:after {
+            position: absolute;
+            width: 45%;
+            max-width: 500px;
+            content: "Upload your file";
+            left: 0;
+            right: 0;
+            margin: 30px auto;
+            text-align: center;
+            padding: 50px 0px 50px 0px;
+            border-radius: 10px;
+            border: 5px dashed #ccc;
+            color: #ccc;
+            font-family: "Helvetica Neue", Helvetica, Arial;
+            font-size: 30px;
+        }
+
+        label#largeFile:hover:after {
+            background: #ccc;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        label#largeFile input#file {
+            width: 0px;
+            height: 0px;
+        }
+    </style>
+    @using System.Web;
+
+    @{ Staj1.Models.Staj1DB context = new Staj1.Models.Staj1DB();
+        string numara = User.Identity.Name;
+        int kullaniciId = context.Kullanici.Where(x => x.Numara == numara).Select(x => x.KullaniciID).FirstOrDefault();
+        var stajOnaylandiMi = context.Kullanici.Where(x => x.Numara == numara).Select(x => x.StajDurumID).FirstOrDefault(); }
+
+</head>
+
+<div>
+
+    <h1 style="text-align:center"><b>Kayıt Oluştur</b></h1>
+    <hr />
+
+
+
+    @if (User.Identity.IsAuthenticated == true)
+    {
+<form action="/Kullanici/KayitOlustur" method="post" name="myDropzone" id="myDropzone" enctype="multipart/form-data">
+    <br />
+    <div>
+        <div id="previews" class="dz-default dz-message box__input dropzone" style="background-color:lightgrey">
+            @*<div style="text-align:center">
+                    <i class="fa fa-cloud-upload" style="font-size:43px;position:relative;top:4px;"></i> <span style="margin-left:20px"><p style="font-size:25px">Lütfen yüklemek istediğiniz dosyaları seçiniz ya da bu alana sürükleyiniz.</p></span>
+                </div>*@
+            <label id="largeFile" for="file">
+                <input type="file" id="file" />
+            </label><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+        </div>
+        <br /><br />
+        <div style="text-align: center; border: 1px solid #000; padding: 8px; -moz-border-radius: 10px; -webkit-border-radius: 10px; border-radius: 10px; width: 420px; margin-left: 355px; background-color:gainsboro">
+            <h3 style=" font-weight: bold">Yüklenen Belgeleriniz</h3><br /><br />
+
+            <div id="previewFiles" style="margin-top: -35px"></div>
+
+            <div style="text-align:center">
+                @if (stajOnaylandiMi != 1 && stajOnaylandiMi != 8)
+                {
+<input type="submit" id="Submit" name="Submit" value="Belgeleri Kaydet" style="background-color:gainsboro;font-weight:bold" />}
+                <br /><br />
+
+            </div>
+        </div>
+    </div>
+    <br /><br />
+</form>}
+
+
+    <br /><br /><br /><br />
+
+    <br />
+    <p class="UyeMisin-p1" style="text-align:center; margin-left:100px"> Bilgi ekranını doldurarak kayıt ekleyiniz.</p>
+
+    <br />
+
+    <div class="Uyemisin-cerceve" style="margin-left:235px; margin-right:200px; width:60%">
+
+        <form action="/Admin/KayitOlustur" method="post">
+            <div class="Uyeol-form-block" style="margin-left:180px;margin-right:200px; width:60%; margin-top:60px">
+
+                <div class="logo" style="margin-left:85px">
+                    <img src="~/Content/Logo/Kouyenilogo.png" />
+                </div>
+
+                <h2 class="UyeMisin-h2">Yeni Kayıt</h2>
+                <div class="Mesaj-Kutu">
+                    <h3 class="UyeMisin-h3">@ViewBag.Mesaj</h3>
+                </div>
+                <div class="Uyari-Kutu">
+                    <h3 class="UyeMisin-h3">@ViewBag.Uyari</h3>
+                </div>
+                <div class="container">
+                    <input type="text" placeholder="Ad" name="Adi" required><br />
+                    <input type="text" placeholder="Soyad" name="Soyadi" required><br />
+                    <textarea type="text" rows="2" placeholder="Adres" name="Adres" style="width:250px;margin-left:30px;text-align:center" required></textarea><br />
+                    <input type="text" placeholder="E-Posta Adresi" name="Mail" required><br />
+                    <input type="text" placeholder="Okul Numarası" name="Numara" id="okul_numarasi" required><br />
+                    <input type="text" placeholder="0(---)/---/----" name="TelefonNo" id="telefon_numarasi" required><br />
+                    <input type="text" placeholder="Sınıf" name="Sinif" required><br />
+                    <input type="password" placeholder="Parola" name="Parola" required><br />
+                    <button type="submit" value="Create">Kaydol</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <br />
+</div>
+
+
+
+
+
+    <!--@if (User.Identity.IsAuthenticated == true)
+    {
+        <form action="/Admin/KayitOLustur" method="post" name="myDropzone" id="myDropzone" enctype="multipart/form-data">
+            <br />
+            <div>
+                <div id="previews" class="dz-default dz-message box__input dropzone">
+
+                    <label id="largeFile" for="file">
+                        <input type="file" id="file" />
+                    </label><br /><br /><br /><br /><br /><br />
+                </div>
+                <br /><br />
+                <div style="text-align: center; border: 1px solid #000; padding: 8px; -moz-border-radius: 10px; -webkit-border-radius: 10px; border-radius: 10px; width: 420px; margin-left: 355px; background-color:gainsboro">
+                    <h3 style=" font-weight: bold">Yüklenen Belgeleriniz</h3><br /><br />
+
+                    <div id="previewFiles" style="margin-top: -35px"></div>
+
+                    <div style="text-align:center">
+                        @if (stajOnaylandiMi != 1 && stajOnaylandiMi != 8)
+                        {
+                            <input type="submit" id="Submit" name="Submit" value="Belgeleri Kaydet" style="background-color:gainsboro;font-weight:bold" />}
+                        <br /><br />
+
+                    </div>
+                </div>
+            </div>
+            <br /><br />
+        </form>
+    }
+
+    <br />
+
+
+    <br />
+    <p class="UyeMisin-p1" style="text-align:center; margin-left:100px"> Bilgi ekranını doldurarak kayıt ekleyiniz.</p>
+
+    <br />
+
+    <div class="Uyemisin-cerceve" style="margin-left:235px; margin-right:200px; width:60%">
+
+
+        <form action="/Admin/KayitOlustur" method="post">
+            <div class="Uyeol-form-block" style="margin-left:180px;margin-right:200px; width:60%; margin-top:60px">
+
+                <div class="logo" style="margin-left:85px">
+                    <img src="~/Content/Logo/Kouyenilogo.png" />
+                </div>
+
+
+                <h2 class="UyeMisin-h2">Yeni Kayıt</h2>
+
+
+                <div class="Mesaj-Kutu">
+                    <h3 class="UyeMisin-h3">@ViewBag.Mesaj</h3>
+                </div>
+
+                <div class="Uyari-Kutu">
+                    <h3 class="UyeMisin-h3">@ViewBag.Uyari</h3>
+                </div>
+
+                <div class="container">
+
+                    <input type="text" placeholder="Ad" name="Adi" required><br />
+
+
+                    <input type="text" placeholder="Soyad" name="Soyadi" required><br />
+
+                    <input type="text" rows="2" placeholder="Adres" name="Adres" required><br />
+
+
+                    <input type="text" placeholder="E-Posta Adresi" name="Mail" required><br />
+
+
+                    <input type="text" placeholder="Okul Numarası" name="Numara" id="okul_numarasi" required><br />
+
+                    <input type="text" placeholder="Bölümü" name="Bolum" id="bolum" required><br />
+
+                    <input type="text" placeholder="Fakülte" name="Fakulte" id="fakulte" required><br />
+
+
+                    <input type="text" placeholder="0(---)/---/----" name="TelefonNo" id="telefon_numarasi" required><br />
+
+                    <input type="text" placeholder="Sınıf" name="Sinif" required><br />-->
+    @*<input type="password" placeholder="Parola" name="Parola" required><br />*@
+
+
+
+    <!--<button type="submit" value="Create">Kaydol</button>
+
+                    </div>
+
+                </div>
+
+            </form>
+        </div>
+        <br />
+    </div>-->

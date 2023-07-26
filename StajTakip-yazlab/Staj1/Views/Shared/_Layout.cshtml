@@ -1,0 +1,158 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<title>Kou Takip Sistemi</title>
+
+<html>
+<head>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    @*<link href="~/Content/bootstrap.css" rel="stylesheet" />*@
+    <link href="/Content/style.css" rel="stylesheet" type="text/css">
+    <link href="/Content/styles/lunar.css" rel="stylesheet" type="text/css" id="colorstyle">
+    <link href="/Content/custom.css" rel="stylesheet" type="text/css">
+    @*<link href="/Content/demo/demo.css" rel="stylesheet" type="text/css">*@
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="~/Content/jquery-3.1.1.min.js"></script>
+    @*<script src="~/Content/demo/demo.js"></script>*@
+    <script src="~/Content/demo/SmoothScroll.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <link rel="icon" href="https://www.kocaeli.edu.tr/assets/ico/favicon.ico">
+    <title>Kou Staj Takip Sistemi</title>
+    @* FAVİCON*@
+    <link rel="icon" href="https://www.kocaeli.edu.tr/assets/ico/favicon.ico" />
+
+</head>
+
+<body>
+
+    <div class="loader-wrapper">
+        <span class="loader"><span class="loader-inner"></span></span>
+    </div>
+
+    <div id="wrapper">
+        <!-- HEADER START -->
+        <section id="header">
+            <!-- Fixed navbar -->
+            <nav class="navbar navbar-default navbar-fixed-top" style="background-color:seagreen">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="/Home/Index">
+                            <img src="~/Content/Logo/Kouyenilogo.png" height="46">
+
+                            <h3>Kocaeli Üniversitesi</h3>
+                        </a>
+
+
+
+
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li class="">
+                                <a href="/Home/Index">ANA SAYFA</a>
+                            </li>
+
+
+                            <li class="Button">
+
+                            <li><a href="https://localhost:44374/Kullanici/GirisYap">GİRİŞ YAP</a></li>
+
+                            </li>
+
+
+                        </ul>
+
+
+
+                    </div>
+                </div>
+            </nav>
+        </section>
+
+
+        @*<section id="title" class="container-fluid wow fadeInDown">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-xs-9 text-right breadcrumbs">
+
+                    </div>
+                </div>
+            </div>
+        </section>*@
+        <br /><br /><br />
+        <br /><br />
+
+
+
+
+        <section id="blog-list" class="container">
+            <div class="row">
+                @RenderBody()
+
+                @*left column end
+                right column start*@
+                <div id="sidebar" class="col-md-3">
+
+
+                </div>
+                @*right column end*@
+
+            </div>
+        </section>
+        <section id="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <img src="~/Content/Logo/Kouyenilogo.png" alt="Kocaeli Üniversitesi" height="45"><br>
+                        <p>Üniversitemiz ve bölümümüz hakkında daha fazla ve detaylı bilgi için sosyal medya hesaplarımızı takip edebilirsiniz.</p>
+                        <br>
+                        <ul class="list-unstyled list-inline social-icons">
+                            <li><a href="https://wwwfacebook.com/kou92official" class="facebook"><i class="fa fa-facebook facebook"></i></a></li>
+                            <li><a href="https://twitter.com/kou92official" class="twitter"><i class="fa fa-twitter twitter"></i></a></li>
+                            <li><a href="https://wwwinstagram.com/kou92official" class="instagram"><i class="fa fa-instagram instagram"></i></a></li>
+                            <li><a href="https://www.youtube.com/c/kocaeliuniversitesi" class="youtube"><i class="fa fa-youtube youtube"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-6">
+                        <p><b>İletişim Bilgilerimiz</b></p>
+                        <p>
+                            <i class="fa fa-home"></i>
+                            Adres:
+                            Kocaeli Üniversitesi
+                            Umuttepe Yerleşkesi
+                            41001, İzmit/KOCAELİ
+                        </p>
+                        <p>
+                            <i class="fa fa-phone"></i>
+                            Telefon: +90 (262) 303 10 00
+                        </p>
+                        <p>
+                            <i class="fa fa-fax"></i>
+                            Fax: +90 (262) 303 10 33
+                        </p>
+                        <p>
+                            <i class="fa fa-envelope"></i>
+                            Mail: kocaeliuniversitesi@hs01.kep.tr
+                        </p>
+                    </div>
+        </section>
+
+    </div>
+
+    <script type="text/javascript">
+        $(window).on("load", function () {
+            $(".loader-wrapper").fadeOut("slow");
+        });
+    </script>
+
+</body>
+</html>

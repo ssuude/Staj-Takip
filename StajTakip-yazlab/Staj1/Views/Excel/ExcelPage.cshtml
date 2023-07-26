@@ -1,0 +1,30 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ExcelPage</title>
+</head>
+<body>
+    <div>
+        <h2>Excel Import</h2>
+
+        <form method="post" action="~/Excel/Index" enctype="multipart/form-data">
+
+            <div>
+
+                <input name="file" type="file" required />
+
+                <button type="submit">Import</button>
+
+            </div>
+
+        </form>
+    </div>
+</body>
+</html>

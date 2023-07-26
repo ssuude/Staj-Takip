@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Staj1.Models.StajyerOgrenciBaslatma>
+
+@{
+    ViewBag.Title = "StajBasvuruListesi";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@{var i = 1;}
+
+<script>
+    function Sil(id) {
+
+        if (confirm('Kayıt Silinsin Mi?')) {
+            var model = {
+                "id": id
+            };
+
+            $.ajax({
+                url: '/Admin/Sil',
+                type: "POST",
+                data: model,
+                success: function (result) {
+                    alert("Kayıt Başarıyla Silindi")
+                    location.reload();
+                }
+            });
+
+        }
+    }
+</script>
+
+<h1 style="font-weight: bold;text-align:center">Başvurusu Onaylananların Listesi</h1>
+<hr />
+
+
+
+
+<table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+    <thead>
+        <tr style="font-size:17px">
+            <th scope="col" style="font-weight: bold; font-style: italic">Sıra No</th>
+            <th scope="col" style="font-weight:bold"> Adı</th>
+            <th scope="col" style="font-weight:bold"> Soyadı</th>
+            <th scope="col" style="font-weight:bold"> Numarası</th>
+            <th scope="col" style="font-weight:bold"> E-Posta</th>
+            <th scope="col" style="font-weight:bold"> Tel No</th>
+            <th scope="col" style="font-weight:bold"> Staj Başlangıç Tarihi</th>
+            <th scope="col" style="font-weight:bold"> Staj Bitiş Tarihi</th>
+            <th scope="col" style="font-weight:bold">Staj Durumu</th>
+            <th scope="col" style="font-weight:bold">Başvuruyu Değerlendiren</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+        <tr style="font-size:17px">
+            <td style="">@i</td>
+            <td style="">@item.Kullanici.Adi</td>
+            <td style="">@item.Kullanici.Soyadi</td>
+            <td style="">@item.Kullanici.Numara</td>
+            <td style="">@item.Kullanici.Mail</td>
+            <td style="">@item.Kullanici.TelefonNo</td>
+            <td style="">@item.StajBaslangicTarihi.ToString().TrimEnd('0', ':')</td>
+            <td style="">@item.StajBitisTarihi.ToString().TrimEnd('0', ':')</td>
+            <td style="">@item.Kullanici.StajDurum.StajDurumAdi</td>
+            <td style="">@item.Kullanici.BasvuruyuDegerlendiren</td>
+            
+        </tr>
+            i++;
+        }
+
+    </tbody>
+</table>
+
+<br />
+<br />
+
+

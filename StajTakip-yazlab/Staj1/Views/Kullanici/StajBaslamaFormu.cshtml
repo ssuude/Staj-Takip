@@ -1,0 +1,327 @@
+﻿@model Staj1.Models.StajBasvuruForm
+
+@{ ViewBag.Title = "StajBaslamaFormu";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml"; }
+<br />
+
+
+
+
+<div>
+
+    <div style="margin-left: 500px;">
+
+        <img src="~/Content/Logo/Kouyenilogo.png" />
+    </div>
+
+
+    <div class="container-fluid pt-4 px-4">
+        <form action="~/Kullanici/Form" target="_blank" id="submitForm" method="post">
+
+            <div class="row g-6">
+                <!--Öğrenci Start-->
+
+                <div class="col-sm-12 col-xl-12">
+                    <div class="bg-light rounded h-100 p-4">
+                        <h6 class="mb-4"></h6>
+                        <h3><b style="color: seagreen; text-align: center; enter; margin-left: 500px">Öğrenci Bilgileri</b></h3>
+
+
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Adı</label>
+                            @{
+                                            <input type="text" class="form-control" name="TcKimlik_Numara" id="exampleInputPassword1" disabled value=@Model.Adi> }
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Soyadi</label>
+                            @{
+                                            <input type="text" class="form-control" name="TcKimlik_Numara" id="exampleInputPassword1" disabled value=@Model.Soyadi> }
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">T.C. Kimlik No</label>
+
+                            <input type="text" class="form-control" name="TcKimlik_Numara" id="exampleInputPassword1">
+
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Uyruk</label>
+
+                            <input type="text" class="form-control" name="Uyruk" id="exampleInputPassword1">
+
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Telefon numarası</label>
+                            <input type="text" class="form-control" name="Ev_Numara" id="exampleInputPassword1">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Telefon numarası</label>
+                            <input type="text" class="form-control" name="Cep_Numara" id="exampleInputPassword1">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" name="Mail"
+                                   aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">İl</label>
+                            <input type="text" class="form-control" name="Il" id="exampleInputPassword1">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">İlçe</label>
+                            <input type="text" class="form-control" name="Ilce" id="exampleInputPassword1">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Posta Kodu</label>
+                            <input type="text" class="form-control" name="PostaKodu" id="exampleInputPassword1">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Adres</label>
+                            <input type="text" class="form-control" name="Adres" id="exampleInputPassword1">
+                        </div>
+                        <!-- Staj dönem seçtir-->
+                        <h6>Staj Bilgileri , *</h6><br>
+                        <fieldset class="row mb-3">
+                            <legend class="col-form-label col-sm-2 pt-0">Staj Dönem</legend>
+                            <div class="col-sm-10">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="Soru1"
+                                           id="gridRadios1" value="Staj 1" checked>
+                                    <label class="form-check-label" for="gridRadios1">
+                                        Staj-1
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="Soru1"
+                                           id="gridRadios2" value="Staj 2">
+                                    <label class="form-check-label" for="gridRadios2">
+                                        Staj-2
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="Soru1"
+                                           id="gridRadios2" value="IME">
+                                    <label class="form-check-label" for="gridRadios2">
+                                        IME
+                                    </label>
+                                </div>
+                            </div>
+                            <!-- Tarih-->
+                            <div class="row mb-3">
+                                <label for="inputEmail3" class="col-sm-2 col-form-label">Başlangıç Tarihi</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="stajBaslangic" class="form-control" id="inputEmail3">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="inputEmail3" class="col-sm-2 col-form-label">Bitiş Tarihi</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="stajBitis" class="form-control" id="inputEmail3">
+                                </div>
+                            </div>
+                            @*<div class="row mb-3">
+                                <label for="inputEmail3" class="col-sm-2 col-form-label">İş Günü</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="IsGunu" class="form-control" id="inputEmail3">
+                                </div>
+                            </div>*@
+                            <!---Sigorta-->
+                            <hr>
+                            <div class="form-check">
+                                <legend class="col-form-label col-sm-60 pt-0">Ailemden,  Kendimden veya  Anne-Baba Üzerinden Genel Sağlık Sigortası Kapsamında Sağlık Hizmeti Alıyorum</legend>
+                                <input class="form-check-input" type="radio" name="Soru2"
+                                       id="flexRadioDefault1" value="Evet">
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                    Evet
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="Soru2"
+                                       id="flexRadioDefault2" checked value="Hayir">
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                    Hayır
+                                </label>
+                            </div>
+                            <hr>
+                            <div class="form-check">
+                                <legend class="col-form-label col-sm-60 pt-0">Genel Sağlık Sigortası (GSS) (Gelir Testi Yaptırdım Pirim Ödüyorum)</legend>
+                                <input class="form-check-input" type="radio" name="Soru3"
+                                       id="flexRadioDefault3" value="Evet">
+                                <label class="form-check-label" for="flexRadioDefault3">
+                                    Evet
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="Soru3"
+                                       id="flexRadioDefault4" checked value="Hayir">
+                                <label class="form-check-label" for="flexRadioDefault4">
+                                    Hayır
+                                </label>
+                            </div>
+                            <hr>
+
+                            <div class="form-check">
+                                <legend class="col-form-label col-sm-60 pt-0">25 Yaşını Doldurdum</legend>
+                                <input class="form-check-input" type="radio" name="Soru4"
+                                       id="flexRadioDefault1" value="Evet">
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                    Evet
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="Soru4"
+                                       id="flexRadioDefault2" checked value="Hayir">
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                    Hayır
+                                </label>
+                        </fieldset>
+
+                    </div>
+                </div>
+                <!-- Öğrenci End-->
+                <!-- Şirket Start-->
+                <div class="col-sm-12 col-xl-6">
+                    <div class="bg-light rounded h-100 p-4">
+                        <h6 class="mb-3"></h6>
+                        <h3><b style="color: seagreen; text-align: center;  margin-left:500px">Şirket Bilgileri</b></h3>
+
+
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label"> Resmi Adı</label>
+                            <input type="text" class="form-control" name="Firma" id="exampleInputPassword1">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Faaliyet Alanı</label>
+                            <input type="text" class="form-control" name="Faaliyet_Alani" id="exampleInputPassword1">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Telefon numarası</label>
+                            <input type="text" class="form-control" name="Firma_Telefon" id="exampleInputPassword1">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Fax</label>
+                            <input type="text" class="form-control" name="Faks" id="exampleInputPassword1">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Email address</label>
+                            <input type="text" name="Firma_Mail" class="form-control" id="exampleInputEmail1"
+                                   aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">İl</label>
+                            <input type="text" class="form-control" name="Firma_Il" id="exampleInputPassword1">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">İlçe</label>
+                            <input type="text" class="form-control" name="Firma_Ilce" id="exampleInputPassword1">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Posta Kodu</label>
+                            <input type="text" class="form-control" name="Firma_PostaKodu" id="exampleInputPassword1">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Adres</label>
+                            <input type="text" class="form-control" name="Firma_Adres" id="exampleInputPassword1">
+                        </div>
+                        <!-- Staj dönem seçtir-->
+                        <fieldset class="row mb-3">
+                            <br /><br />
+                            <legend class="col-form-label col-sm-2 pt-0">Staj Sorumlusunu Unvanı</legend>
+                            <div class="col-sm-10">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="gridRadios"
+                                           id="gridRadios1" value="option1" checked>
+                                    <label class="form-check-label" for="gridRadios1">
+                                        Mühendis
+                                    </label>
+
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="gridRadios"
+                                           id="gridRadios2" value="option2">
+                                    <label class="form-check-label" for="gridRadios2">
+                                        Teknik Öğretmen
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="gridRadios"
+                                           id="gridRadios2" value="option2">
+                                    <label class="form-check-label" for="gridRadios2">
+                                        Hekim
+                                    </label>
+                                </div>
+                            </div>
+                            <br /><br /><br />
+                            <!---Sigorta-->
+                            <hr>
+                            <br />
+                            <div class="form-check">
+                                <legend class="col-form-label col-sm-60 pt-0">Kurum olarak 3308 sayılı kanundaki devlet katkısından yararlanmak istiyor musunuz?*           </legend>
+                                <input class="form-check-input" type="radio" name="Soru5"
+                                       id="flexRadioDefault1" value="Evet">
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                    Evet
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="Soru5"
+                                       id="flexRadioDefault2" checked value="Hayir">
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                    Hayır
+                                </label>
+                            </div>
+                            <hr>
+                            <div class="form-check">
+                                <legend class="col-form-label col-sm-60 pt-0">Staj şekli </legend>
+                                <input class="form-check-input" type="radio" name="Soru6"
+                                       id="flexRadioDefault1" value="Online">
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                    Online
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="Soru6"
+                                       id="flexRadioDefault2" checked value="İş Yerinde">
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                    İş Yerinde
+                                </label>
+                            </div>
+                            <hr>
+                            <h6 class="mb-4">Açıklamalar</h6>
+                            <ul>
+                                <li>
+                                    *3308 sayılı Meslekî Eğitim Kanunu ve 5510 sayılı Sosyal Sigortalar ve Genel Sağlık Sigortası Kanununun 5 inci maddesinin (b) bendi gereğince zorunlu staja tabi tüm öğrencilere "İş Kazası ve Meslek Hastalığı Sigortası" yapılması ve sigorta primlerinin Üniversite tarafından ödenmesi gerekmektedir.  Staj süresi boyunca üniversitemiz tarafından öğrencimizin SGK’ya kaydı yaptırılacaktır.
+                                </li>
+                                <li>
+                                    **Staja SGK sicil numarası alındıktan sonra başlayacaktır. Farklı firmalarda yapılacak stajlar için ayrı form doldurulacaktır. Öğrenci bu evraktan 2 nüsha düzenleyip firmaca onaylandıktan sonra bir tanesini belirlenen staj döneminden en az 1 ay önce ilgili bölüm başkanlığına teslim etmek zorundadır.
+                                </li>
+                                <li>
+                                    * Yanıtınız Evet ise Ek-1 formunu doldurunuz
+                                </li>
+                            </ul>
+                            <hr />
+
+                            <input type="button" class="btn btn-outlinesuccess"  onclick="TamamlandiFunc()" style="margin-left:500px;background-color:green;color:white;" value="Başvuru Oluştur"/>
+                        </fieldset>
+        
+                        </form>
+
+        </div>
+        </div>
+        <!-- Şirket End-->
+        </div>
+    </div>
+    
+</div>
+<br />
+<script>
+    function TamamlandiFunc() {
+        document.getElementById("submitForm").submit();
+
+        const myTimeout = setTimeout(myGreeting, 8000);
+
+        function myGreeting() {
+            window.location.href = "/Kullanici/StajBaslangicFormum";
+        }
+
+    }
+</script>

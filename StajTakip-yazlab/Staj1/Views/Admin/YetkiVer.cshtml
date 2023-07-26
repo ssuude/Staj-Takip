@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Staj1.Models.KullaniciRol>
+
+@{
+    ViewBag.Title = "YetkiVer";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<hr />
+
+<table  id="example" class="table table-striped table-bordered" cellspacing="0" width="100%" >
+    <thead>
+
+        
+        <tr>
+            <th>Adı</th>
+            <th>Soyadı</th>
+            <th>Numara</th>
+            <th>Mail</th>
+            <th>Kayıt Tarihi</th>
+            <th>Yetkisi</th>
+            <th>Düzenle</th>
+        </tr>
+    </thead>
+    <tbody>
+
+
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td style="">@item.Kullanici.Adi</td>
+            <td style="">@item.Kullanici.Soyadi</td>
+            <td style="">@item.Kullanici.Numara</td>
+            <td style="">@item.Kullanici.Mail</td>
+            <td style="">@item.Kullanici.KayıtTarihi</td>
+
+
+            @if (item.Rol.RolAdi == "Eğitim Elemanı")
+            {
+        <td style=" font-weight: bold ; color: seagreen">@item.Rol.RolAdi</td>
+}
+
+            @if (item.Rol.RolAdi == "Kullanici")
+            {
+        <td style="font-weight: bold; color: seagreen"> @item.Rol.RolAdi </td>
+}
+
+            @if (item.Rol.RolAdi == "Admin")
+            {
+        <td style=" font-weight: bold ; color: seagreen">@item.Rol.RolAdi</td>}
+
+            @if (item.Rol.RolAdi == "Komisyon")
+            {
+        <td style=" font-weight: bold ; color: seagreen">@item.Rol.RolAdi</td>}
+
+            <td><a href="@Url.Action("YetkiBelirle", "Admin", new { id = @item.Kullanici.KullaniciID })"><button type="submit" class="btn btn-warning">Yetki Belirle</button></a></td>
+        </tr>
+        }
+
+    </tbody>
+</table>
+

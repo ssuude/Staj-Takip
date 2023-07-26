@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Staj1.Models.StajBasvuruBelgeleri>
+
+@{ ViewBag.Title = "BasvuruBelgelerim";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml"; }
+
+@using Staj1.Models;
+@{Staj1DB context = new Staj1DB();
+    string numara = User.Identity.Name;
+    int kullaniciId = context.Kullanici.Where(x => x.Numara == numara).Select(x => x.KullaniciID).FirstOrDefault();
+    var data = context.StajBasvuruBelgeleri.Where(x => x.KullaniciID == kullaniciId && x.Kullanici.StajDurumID == 1).ToList(); }
+
+<script>
+    function BasvuruBelgesiSil(id) {
+
+        if (confirm('Başvuru Belgesi Silinsin Mi?')) {
+            var model = {
+                "id": id
+            };
+
+            $.ajax({
+                url: '/Kullanici/BasvuruBelgesiSil',
+                type: "POST",
+                data: model,
+                success: function (result) {
+                    alert("Başvuru Belgesi Başarıyla Silindi")
+                    location.reload();
+                }
+            });
+
+        }
+    }
+</script>
+
+<h1 style="font-weight: bold; text-align: center">Basvuru Belgelerim</h1>
+<hr />
+
+@if (User.Identity.IsAuthenticated == true)
+{
+<table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+
+    <thead>
+        <tr>
+            <th>Yüklenilen Belge Adı</th>
+            <th>Belge Görüntüle</th>
+            <th>Belge Sil</th>
+            <th>Tarih</th>
+
+        </tr>
+    </thead>
+    <tbody>
+
+
+        @foreach (var item in Model)
+        {
+<tr>
+    <td><a href="@Url.Action("Goster", "Kullanici", new { dosya = @item.BelgeAdi })" target="_blank">@item.BelgeAdi</a></td>
+    <td><a href="@Url.Action("Download", "Kullanici", new { file = @item.BelgeAdi })"><button type="submit" class="btn btn-info">İndir</button></a></td>
+    <td><a onclick="BasvuruBelgesiSil(@item.ID)"><button type="submit" class="btn btn-danger ">Sil</button></a></td>
+    <td>@item.Tarih</td>
+
+</tr>
+}
+
+</table>
+}
+

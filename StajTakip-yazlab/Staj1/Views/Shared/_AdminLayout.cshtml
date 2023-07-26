@@ -1,0 +1,290 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+@using Staj1.Models
+@using System.Web;
+<meta charset="utf-8" />
+<title>Kou Takip Sistemi</title>
+<charset lang="tr" />
+<html>
+<head>
+    <title>Kou Staj Takip Sistemi</title>
+    <meta http-equiv=Content-type content=text/html; charset=UTF-8 />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="/Content/style.css" rel="stylesheet" type="text/css">
+    <link href="/Content/styles/lunar.css" rel="stylesheet" type="text/css" id="colorstyle">
+    <link href="/Content/demo/demo.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="~/Content/jquery-3.1.1.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    @* FAVİCON*@
+    <link rel="icon" href="https://www.kocaeli.edu.tr/assets/ico/favicon.ico" />
+    <script src="~/ckeditor/ckeditor.js"></script>
+</head>
+
+<body>
+
+    <div class="loader-wrapper">
+        <span class="loader"><span class="loader-inner"></span></span>
+    </div>
+
+    <div id="wrapper">
+        <!-- HEADER START -->
+        <section id="header">
+            <!-- Fixed navbar -->
+            <nav class="navbar navbar-default navbar-fixed-top" style="background-color:seagreen">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="/Home/Index">
+                            <img src="~/Content/Logo/Kouyenilogo.png" height="46">
+                        </a>
+
+                        
+
+                    </div>
+
+                    <div id="navbar" class="navbar-collapse collapse">
+
+                        <ul class="nav navbar-nav">
+
+                            <li class="">
+                                <a href="/Home/Index">ANA SAYFA</a>
+                            </li>
+
+
+
+
+                            @if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin"))
+                            {
+                                <li class="dropdown-submenu">
+                                    <a href="/Admin/Index">ADMİN PANELİ</a>
+                                    <ul class="dropdown-menu">
+
+                                        <li><a href="/Admin/BasvuruDosyalari">Staj Değerlendirme</a></li>
+                                        <li><a href="/Admin/StajBasvuruListesi">Başvurusu Onaylananların Listesi</a></li>
+                                        <li><a href="/Admin/BasvurusuTamamlananlarınListesi">Başvurusu Tamamlananların Listesi</a></li>
+                                        <li><a href="/Admin/TatilGunleri">Tatil Günlerini Belirle</a></li>
+                                        <li><a href="/Admin/StajyerOgrenciStajaBaslatmaBilgileri">Staj Başlangıç Bilgileri</a></li>
+                                        <li><a href="/Admin/StajyerOgrenciStajDefterleri">Staj Defterleri</a></li>
+                                        <li><a href="/Admin/YetkiVer">Yetkilendirme</a></li>
+                                        <li><a href="/Admin/KayitOlustur">Kullanıcı Oluşturma</a></li>
+                                        <hr>
+                                        <li>
+                                            <a href="/Home/Index">ÇIKIŞ YAP</a>
+                                        </li>
+
+
+                                    </ul>
+                                </li>
+
+
+                            }
+
+                            @if (User.IsInRole("Komisyon"))
+                            {
+                                <li class="dropdown-submenu">
+                                    <a href="/Admin/Index">KOMİSYON PANELİ</a>
+                                    <ul class="dropdown-menu">
+
+                                        <li><a href="/Admin/BasvuruDosyalari">Staj Değerlendirme</a></li>
+                                        <li><a href="/Admin/StajBasvuruListesi">Başvurusu Onaylananların Listesi</a></li>
+
+                                        <li><a href="/Admin/BasvurusuTamamlananlarınListesi">Başvurusu Tamamlananların Listesi</a></li>
+                                        <li><a href="/Admin/StajyerOgrenciStajaBaslatmaBilgileri"></a></li>
+                                        <li><a href="/Admin/StajyerOgrenciStajDefterleri">Staj Defterleri</a></li>
+
+
+                                        <hr>
+                                        <li>
+                                            <a href="/Home/Index">ÇIKIŞ YAP</a>
+                                        </li>
+
+
+                                    </ul>
+                                </li>
+
+
+                            }
+
+                            @if (User.IsInRole("Eğitim Elemanı"))
+                            {
+                                <li class="dropdown-submenu">
+                                    <a href="/Admin/Index">EĞİTİM ELEMANI PANELİ</a>
+                                    <ul class="dropdown-menu">
+
+                                        <li><a href="/Admin/BasvuruDosyalari">Staj Değerlendirme</a></li>
+                                        <li><a href="/Admin/StajBasvuruListesi">Başvurusu Onaylananların Listesi</a></li>
+                                        <li><a href="/Admin/BasvurusuTamamlananlarınListesi">Başvurusu Tamamlananların Listesi</a></li>
+                                        <li><a href="/Admin/StajyerOgrenciStajaBaslatmaBilgileri">Staj Başlangıç Bilgileri</a></li>
+                                        <li><a href="/Admin/StajyerOgrenciStajDefterleri">Staj Defterleri</a></li>
+
+
+                                        <hr>
+                                        <li>
+                                            <a href="/Home/Index">ÇIKIŞ YAP</a>
+                                        </li>
+
+
+                                    </ul>
+                                </li>
+
+
+                            }
+
+
+
+
+
+                            @if (User.IsInRole("Kullanici"))
+                            {
+                                Staj1DB context = new Staj1DB();
+                                string numara = User.Identity.Name;
+                                int kullaniciId = context.Kullanici.Where(x => x.Numara == numara).Select(x => x.KullaniciID).FirstOrDefault();
+                                var veri = context.Kullanici.Where(x => x.KullaniciID == kullaniciId).Select(x => x.StajDurum.StajDurumID == 1).FirstOrDefault();
+                                StajyerOgrenciBaslatma sob = context.StajyerOgrenciBaslatma.Where(x => x.KullaniciID == kullaniciId).FirstOrDefault();
+                                StajDefteriTeslim sdt = context.StajDefteriTeslim.Where(x => x.KullaniciID == kullaniciId).FirstOrDefault();
+
+                                <li class="dropdown-submenu">
+                                    <a href="">KULLANICI PANELİ</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="/Kullanici/ProfiliDegistir">Profil Düzenle</a></li>
+
+                                        @if (veri == false)
+                                        {
+                                            <li class="dropdown-toggle"><a href="/Kullanici/DosyaYukle">Staj Başvurusu</a></li>
+                                        }
+
+
+                                        <li class="dropdown-toggle"><a href="/Kullanici/BasvuruBelgelerim">Başvuru Belgelerim</a></li>
+                                        @if (veri == false)
+                                        {
+                                            <li class="dropdown-toggle"><a href="/Kullanici/StajBaslamaFormu">Staj Başvuru Formunu Doldur</a></li>
+                                        }
+                                        <li class="dropdown-toggle"><a href="/Kullanici/StajBaslangicFormum">Staj Başlangıç Formum</a></li>
+
+                                        <li class="dropdown-toggle"><a href="/StajDefteri/StajDefteriniYukle">Staj Defterini Gönder</a></li>
+                                        <hr />
+                                        <li class="dropdown-toggle"><a href="/Home/Index">ÇIKIŞ YAP</a></li>
+                                    </ul>
+                                </li>
+                            }
+                        </ul>
+                    </div><!--/.nav-collapse -->
+                </div>
+            </nav>
+        </section>
+
+
+        <section id="title" class="container-fluid wow fadeInDown">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-4">
+                        <h3>Kocaeli Üniversitesi</h3>
+
+                    </div>
+
+                    <div class="col-xs-10">
+                        
+                        @if (User.IsInRole("Kullanici"))
+                        {
+
+                            Staj1DB context = new Staj1DB();
+
+
+                            string numara = User.Identity.Name;
+
+                            string stajdurum = context.Kullanici.Where(x => x.Numara == numara).Select(x => x.StajDurum.StajDurumAdi).FirstOrDefault();
+
+                            <h2 style="font-weight:bold;color:lightseagreen;margin-left:340px;font-size:larger">Staj Durumunuz: @stajdurum</h2>
+
+                        }
+
+
+                    </div>
+                    <div class="col-xs-4 text-right breadcrumbs">
+
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            Staj1DB context = new Staj1DB();
+
+
+                            string numara = User.Identity.Name;
+                            string adi = context.Kullanici.Where(x => x.Numara == numara).Select(x => x.Adi).FirstOrDefault();
+                            string soyadi = context.Kullanici.Where(x => x.Numara == numara).Select(x => x.Soyadi).FirstOrDefault();
+
+
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <div class="container body-content">
+            @RenderBody()
+
+
+        </div>
+
+        <br /><br /><br /><br /><br /><br />
+
+        
+
+                                      <section id="footer">
+                                          <div class="container">
+                                              <div class="row">
+                                                  <div class="col-md-6">
+                                                      <img src="~/Content/Logo/Kouyenilogo.png" alt="Kocaeli Üniversitesi" height="45"><br>
+                                                      <p>Üniversitemiz ve bölümümüz hakkında daha fazla ve detaylı bilgi için sosyal medya hesaplarımızı takip edebilirsiniz.</p>
+                                                      <br>
+                                                      <ul class="list-unstyled list-inline social-icons">
+                                                          <li><a href="https://wwwfacebook.com/kou92official" class="facebook"><i class="fa fa-facebook facebook"></i></a></li>
+                                                          <li><a href="https://twitter.com/kou92official" class="twitter"><i class="fa fa-twitter twitter"></i></a></li>
+                                                          <li><a href="https://wwwinstagram.com/kou92official" class="instagram"><i class="fa fa-instagram instagram"></i></a></li>
+                                                          <li><a href="https://www.youtube.com/c/kocaeliuniversitesi" class="youtube"><i class="fa fa-youtube youtube"></i></a></li>
+                                                      </ul>
+                                                  </div>
+                                                  <div class="col-sm-6">
+                                                      <p><b>İletişim Bilgilerimiz</b></p>
+                                                      <p>
+                                                          <i class="fa fa-home"></i>
+                                                          Adres:
+                                                          Kocaeli Üniversitesi
+                                                          Umuttepe Yerleşkesi
+                                                          41001, İzmit/KOCAELİ
+                                                      </p>
+                                                      <p>
+                                                          <i class="fa fa-phone"></i>
+                                                          Telefon: +90 (262) 303 10 00
+                                                      </p>
+                                                      <p>
+                                                          <i class="fa fa-fax"></i>
+                                                          Fax: +90 (262) 303 10 33
+                                                      </p>
+                                                      <p>
+                                                          <i class="fa fa-envelope"></i>
+                                                          Mail: kocaeliuniversitesi@hs01.kep.tr
+                                                      </p>
+                                                  </div>
+                                      </section>
+
+
+    </div>
+
+    <script type="text/javascript">
+        $(window).on("load", function () {
+            $(".loader-wrapper").fadeOut("slow");
+        });
+    </script>
+
+</body>
+</html>

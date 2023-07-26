@@ -1,0 +1,79 @@
+﻿@model Staj1.Models.StajyerOgrenciBaslatma
+
+@{
+    ViewBag.Title = "StajBaslangicFormum";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<br />
+
+<script>
+    function StajBaslangicFormunuSil(id) {
+
+        if (confirm('Başvuru Formu Silinsin Mi?')) {
+            var model = {
+                "id": id
+            };
+
+            $.ajax({
+                url: '/Kullanici/StajBaslangicFormunuSil',
+                type: "POST",
+                data: model,
+                success: function (result) {
+                    alert("Başvuru Formu Başarıyla Silindi")
+                    location.reload();
+                }
+            });
+
+        }
+    }
+</script>
+
+<p style="font-weight: bold;text-align:center;color:black ; font-size:19px">@ViewBag.Mesaj</p>
+
+<p style="font-weight: bold;text-align: center; color: green; font-size: 19px">@ViewBag.Mesaj1</p>
+
+
+    <p style="text-align:center;font-size:19px"><a style="font-weight: bold; font-style: italic;color:black">Açıklama:</a> Staj başvuru formuna ait doldurup kaydetmiş olduğunuz bilgiler aşağıdaki gibidir. Eksik veya yanlış oluşturduğunuz bilgilerinizi tekrardan güncelleyebilir veya başvuru formunuzu sistemden silip tekrardan yükleyebilirsiniz.</p>
+    <br />
+
+    <div style="border: 1px solid ; padding: 8px; width: 390px; height: auto; margin-left: 390px ">
+
+        <div style="margin-left: 135px;">
+            <img src="~/Content/Logo/Kouyenilogo.png" />
+        </div>
+        <br />
+
+        <a style="text-align: center;font-weight:bold;color:black">Ad Soyad :</a> <a style="color:black">@Model.Kullanici.Adi @Model.Kullanici.Soyadi</a><br />
+
+        <a style="text-align: center; font-weight: bold; color: black ">TC Kimlik No : </a> <a style="color:black">@Model.Kullanici.Numara</a><br />
+
+        <a style="text-align: center; font-weight: bold; color: black ">Adresiniz : </a> <a style="color:black">@Model.Kullanici.Adres</a><br />
+
+        <a style="text-align: center; font-weight: bold; color: black ">İş Yeri Adı : </a> <a style="color:black">@Model.IsyeriAdi</a><br />
+
+        <a style="text-align: center; font-weight: bold; color: black ">İş Yeri Adresi : </a> <a style="color:black">@Model.IsyeriAdresi</a><br />
+
+        <a style="text-align: center; font-weight: bold; color: black ">Staj Başlangıç Tarihi : </a> <a style="color:black">@Model.StajBaslangicTarihi.ToString().TrimEnd('0', ':')</a><br />
+
+        <a style="text-align: center; font-weight: bold; color: black ">Staj Bitiş Tarihi : </a> <a style="color:black">@Model.StajBitisTarihi.ToString().TrimEnd('0', ':')</a><br />
+
+        <a style="text-align: center; font-weight: bold; color: black ">Cumartesi Çalışıyormusunuz? : </a> <a style="color:black">@Model.CumartesiCalisiyorMu</a><br />
+
+        <a style="text-align: center; font-weight: bold; color: black ">Staj Türü : </a> <a style="color:black">@Model.StajAdi.Adi</a><br />
+
+        <a style="text-align: center; font-weight: bold; color: black ">Staj Süresince Denk Gelen Günlerinizin Sayısı : </a> <a style="color:black">@Model.HaftaIciGunSayisi</a><br />
+
+        <a style="text-align: center; font-weight: bold; color: black ">Staj Süresince Denk Gelen Resmi Tatil Sayısı : </a> <a style="color:black">@Model.ResmiTatilSayisi</a><br />
+
+        <a style="text-align: center; font-weight: bold; color: black ">Toplam Çalışma Gününüz : </a> <a style="color:black">@Model.ToplamCalismaSüresi</a> <br /><br />
+
+        @if (Model.Kullanici.StajDurumID != 1)
+        {
+            
+            <a style="margin-left:40px" onclick="StajBaslangicFormunuSil(@Model.ID)"><button type="submit" class="btn btn-danger">Bilgilerimi Sil</button></a> <br /><br />
+        }
+    </div>
+
+
+<br />
